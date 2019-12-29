@@ -1,0 +1,73 @@
+<view class="page-body">
+  <view class="b-title">欢迎到访绿地香港</view>
+  <view class="b-box">
+      
+      <view class="flex-box clearfloat">
+        <view class="flex-item left">员工电话 </view>
+        <view  class="flex-item con">
+            <input class="weui-input" placeholder-class="weui-phold" bindinput="inputByFromMobileFuc" type="number"  name="userToMobile" maxlength="11" placeholder="请输入员工的手机电话" />
+        </view>
+      </view>
+
+      <view class="flex-box clearfloat">
+        <view class="flex-item left">您的姓名 </view>
+        <view  class="flex-item  con">
+            <input class="weui-input" placeholder-class="weui-phold"  bindinput="inputByNameFuc" name="userName" maxlength="10" placeholder="请输入您的姓名" />
+        </view>
+      </view>
+
+      <view class="flex-box clearfloat">
+        <view class="flex-item left">您的电话 </view>
+        <view  class="flex-item  con">
+            <view class="item-inner tel">
+               <text>+86</text>
+            </view>
+            <view class="item-inner">
+                <input class="weui-input" placeholder-class="weui-phold"  bindinput="inputByMobileFuc" name="userMobile" type="number" maxlength="11" placeholder="请输入员工的手机电话" />
+            </view>
+        </view>
+      </view>
+      
+      <view class="flex-box clearfloat">
+        <view class="flex-item left">访问单位 </view>
+        <view  class="flex-item  con pick">
+            <picker mode="multiSelector" bindchange="bindMultiPickerChange" 
+              bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+                <view class="picker">
+                  {{multiArray[0][multiIndex[0]]}}·{{multiArray[1][multiIndex[1]]}}
+                </view>
+            </picker>
+        </view>
+      </view>
+
+      <view class="flex-box clearfloat">
+        <view class="flex-item left">访问日期 </view>
+        <view  class="flex-item  con pick">
+            <picker mode="multiSelector" bindchange="bindMultiTimerPickerChange" 
+              bindcolumnchange="bindMultiPickerTimerColumnChange" value="{{multiTimeIndex}}" range="{{multiTimeArray}}">
+                <view class="picker">
+                  {{multiTimeArray[0][multiTimeIndex[0]]}}  {{multiTimeArray[1][multiTimeIndex[1]]}}
+                </view>
+            </picker>
+        </view>
+      </view>
+
+      <view class="flex-box clearfloat">
+          <view class="flex-item left">验证码 </view>
+          <view  class="flex-item  con">
+              <input class="weui-input" placeholder-class="weui-phold" bindinput="inputMCodeFuc"  maxlength="4" placeholder="请输入短信验证码" />
+          </view>
+          <view  class="flex-item  con checkCode" disabled="{{smsFlag}}" style="color:{{sendColor}}" bindtap="handleSendCheckCodeFuc">
+              {{sendTime}}
+          </view>
+      </view>
+
+   
+  </view>
+    <form  bindsubmit="subBtnFuc" bindreset="formReset" report-submit="true">
+          <button formType="submit" class="subBtn" >提交</button>
+    </form>
+    <!-- 只能 bindtap 事件 -->
+    <button formType="submit" class="subBtn msg" bindtap="handleCallFuc">订阅一次消息</button>
+    
+</view>

@@ -1,0 +1,79 @@
+.page-body{
+  font-size: 28rpx;
+  background: #f8f8f8;
+  height: 100vh;
+  color: #242424;
+
+}
+.b-title{
+  text-align: center;
+  /* margin-top: 100rpx; */
+  margin-bottom: 50rpx;
+  font-size: 60rpx;
+}
+.flex-item{
+  float: left;
+}
+.b-box{
+  background: #fff;
+  margin:20rpx 40rpx;
+  padding: 20rpx 0;
+}
+.flex-box{
+  margin: 30rpx 30rpx;
+  border-bottom: 2rpx solid #eee;
+ 
+}
+.flex-box:last-child{
+  border-bottom: none;
+}
+.flex-item.left{
+  padding-right: 40rpx;
+  color: #878787;
+  padding-top: 10rpx;
+}
+.flex-item{
+  height: 60rpx;
+  padding-top: 10rpx;
+}
+.flex-item.pick{
+  padding-top: 10rpx;
+}
+.weui-phold{
+  color: #cfcfcf;
+  font-size: 24rpx;
+}
+.item-inner{
+  float: left;
+  height: 60rpx;
+}
+.item-inner.tel{
+  padding-top: 4rpx;
+  padding-right: 20rpx;
+}
+.subBtn{
+  position: fixed;
+  color: #fff;
+  margin: auto;
+  left: 0;
+  right: 0;
+  width: 90%;
+  height: 80rpx;
+  line-height: 80rpx;
+  background: #559bfa;
+  border-radius: 10rpx;
+  text-align: center;
+  bottom: 140rpx;
+  padding: 0;
+}
+.subBtn.msg{
+  bottom: 50rpx;
+}
+.checkCode{
+  height: 50rpx;
+  line-height: 50rpx;
+  padding:0 10rpx;
+  box-shadow: 1px 1px 5px 2px rgba(85,155,250,0.5);
+}
+
+

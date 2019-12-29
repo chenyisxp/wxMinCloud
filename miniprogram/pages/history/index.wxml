@@ -1,0 +1,36 @@
+<!--miniprogram/pages/history/index.wxml-->
+<view class="hisPage">
+  <view class="img-box clearfloat" bindtap="handleGoToManage">
+    <view class="img note">
+    </view>
+     <view class="img line">
+    </view>
+     <view class="img call">
+    </view>
+  </view>
+  <view>访问信息已提交</view>
+  <view>请联系员工确认</view>
+  <view class="card">
+      <view class="item clearfloat">
+          <view class="gFl title">被访问员工(电话)</view>
+          <view class="gFr mobile" data-tel="{{info.userToMobile}}" bindtap="handleCallFuc">{{info.userToMobile}}</view>
+      </view>
+      
+      <view class="item clearfloat">
+          <view class="gFl title">访问大厦</view>
+          <view class="gFr value">{{info.city}}·{{info.company}}</view>
+      </view>
+
+      <view class="item clearfloat">
+          <view class="gFl title">访问日期</view>
+          <view class="gFr value">{{info.nDate}} {{info.nTime}}</view>
+      </view>
+  </view>
+  <view class="lastbox">
+      <view class="cancel" bindtap="handleCancelUpdateFuc">
+        撤销预约
+      </view>
+  </view>
+  <view class="custIcon" bindtap="handleGoAiChat"></view>
+</view>
+

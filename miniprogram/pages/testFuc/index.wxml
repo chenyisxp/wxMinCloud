@@ -1,0 +1,2 @@
+<!--miniprogram/pages/testFuc/index.wxml-->
+<button bindtap="handleCallFuc">权限请求</button>
