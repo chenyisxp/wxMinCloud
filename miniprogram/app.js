@@ -1,4 +1,5 @@
 //app.js
+const app = getApp();
 var plugin = requirePlugin("chatbot");
 App({
   onLaunch: function () {
@@ -68,6 +69,16 @@ App({
       userHeader: 'https://res.wx.qq.com/mmspraiweb_node/dist/static/miniprogrampageImages/talk/rightHeader.png',
       userName: ''
     });
-    this.globalData = {}
+    // this.globalData={
+    //   url: 'https://sitassess.greenlandfs.com/',
+    //   webviewurl: 'https://sitassess.greenlandfs.com/',
+    //   userCode: 'user001'
+    // }
+  },
+  globalData: {
+    url: 'https://sitassess.greenlandfs.com/',
+    webviewurl: 'https://sitassess.greenlandfs.com/',
+    userCode:'user001',
+    fromUserCode:'user_202001111622122055'//当前会话的code
   }
 })

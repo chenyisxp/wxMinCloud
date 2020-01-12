@@ -1,0 +1,35 @@
+/* miniprogram/pages/ptxCustCenter/index.wxss */
+.headBox{
+  width: 100%;
+}
+.culom{
+  display: inline-block;
+  text-align: center;
+  margin: 0 auto;
+  height: 50rpx;
+  line-height: 50rpx;
+  margin-bottom: 20rpx;
+}
+.culom.m1{
+  text-align: center;
+  width: 15%;
+}
+.culom.m2{
+  width: 30%;
+}
+.culom.m3{
+  width: 20%;
+}
+.culom.m4{
+  width: 35%;
+  
+}
+.cBtn{
+  display: inline-block;
+  width: 150rpx;
+  border: 2rpx solid red;
+  border-radius:50rpx; 
+}
+.contentBox{
+  margin-bottom: 140rpx;
+}

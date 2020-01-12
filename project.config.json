@@ -86,6 +86,20 @@
 					"id": -1,
 					"name": "测试云函数能不能请求外网",
 					"pathName": "pages/testRequest/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "莆田鞋请求测试",
+					"pathName": "pages/ptxCustCenter/index",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "聊天结果页",
+					"pathName": "pages/ptxCustCenter/msgList/index",
 					"scene": null
 				}
 			]

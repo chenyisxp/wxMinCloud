@@ -1,0 +1,59 @@
+ <view class="contentBox">
+      <!-- <view class="welcomContent">
+        <view>接入时间</view>
+        <view>2019-12-12 22:22:22</view>
+      </view> -->
+
+      <view class="libBox" hidden="{{libBoxShow}}">
+       <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height: 900rpx;">
+       <view wx:for="{{msgList}}" class="scroll-view-item" wx:key="{{index}}" id="{{'key_'+index}}" >
+          <view class="timeShow" wx:if="{{item.sendTime}}">{{index}}{{item.sendTime}}</view>
+          <view  class="{{item.messageType==1?'l-left':'l-right'}}">
+              <view class="l-inner">
+                  {{item.content}}
+              </view>
+          </view>
+        </view>
+        </scroll-view>
+        
+          <!-- <view class="l-left">
+              <view class="l-inner">
+                您好，请问你有可以帮到您
+              </view>
+          </view>
+          <view class="timeShow">20190000</view>
+          <view class="l-right">
+              <view class="l-inner">
+                乔丹系列按较低的基数低技术交底及的计算机的技术交底脚手架地基的大声道
+              </view>
+          </view>
+          <view class="l-left">
+              <view class="l-inner">
+                您好，请问你有可以帮到您
+              </view>
+          </view>
+          <view class="l-right">
+              <view class="l-inner">
+                乔丹系列按较低的基数低技术交底及的计算机的技术交底脚手架基的大声道                  </view>
+          </view> -->
+      </view>
+      <!-- 输入框 带微信表情吧-->
+      
+      <!-- <view class="enterBox">
+        <view class="inputBox" ref="inputBox"> 
+        </view>
+        <view class="sendBox">
+          <textarea  placeholder=""  bindinput="bindTextAreaBlur" value="{{textIn}}" />
+          <span bindtap="handleCallFuc">发送</span>
+        </view>
+      </view> -->
+
+<!-- start 输入框 -->
+ 
+<view class='inputBottom' style='bottom:{{inputBottom}}px'>
+    <input type='text' class='textInput' value='{{inputText}}' placeholder-class='textInputPlaceHolder' placeholder='输入你想要说的...' bindinput='bindTextAreaBlur' bindfocus="foucus" bindblur="blur" bindconfirm='handleCallFuc' adjust-position='{{false}}'></input>
+    <text bindtap='handleCallFuc' class='submit'>发送</text>
+</view>
+ 
+<!-- end 输入框 -->
+</view>

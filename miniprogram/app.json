@@ -6,7 +6,9 @@
     "pages/manageCenter/index",
     "pages/aiChat/index",
     "pages/webviewCenter/index",
-    "pages/testRequest/index"
+    "pages/testRequest/index",
+    "pages/ptxCustCenter/index",
+    "pages/ptxCustCenter/msgList/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
