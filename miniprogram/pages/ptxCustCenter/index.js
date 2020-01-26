@@ -9,14 +9,16 @@ Page({
    */
   data: {
     userList:[
-    ]
+    ],
+    btnShowName:'接入',
+    chatType:'0'
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.queryMsgCardList();
+    this.queryMsgCardList('0');
   },
 
   /**
@@ -30,7 +32,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    this.queryMsgCardList('0');
   },
 
   /**
@@ -67,16 +69,32 @@ Page({
   onShareAppMessage: function () {
 
   },
-  queryMsgCardList() {
+  queryMsgCardList(chatType) {
+    app.globalData.chatType=chatType;//记录当前会话状态
+    this.setData({
+      chatType: chatType
+    })
+    wx.showLoading({
+      title: '查询中...',
+    })
+    if(chatType=='2'){
+      this.setData({
+        btnShowName:'查看'
+      })
+    }else{
+      this.setData({
+        btnShowName: '接入'
+      })
+    }
     wx.cloud.callFunction({
       name: 'ptxRequestServer',
-      data: { jsonparams: { "txCode": "ac010005", "deviceId": "", "sessionId": "", "custId": "", "timestamp": "202001091392", "reqParams": {} }},
+      data: { jsonparams: { "txCode": "ac010005", "deviceId": "", "sessionId": "", "custId": "", "timestamp": "202001091392", "reqParams": { 'chatType': chatType} }},
       success: res => {
-        wx.showToast({
-          title: '地址读取成功,请耐心等待',
-          icon: 'none',
-          duration: 3000
-        })
+        // wx.showToast({
+        //   title: '地址读取成功,请耐心等待',
+        //   icon: 'none',
+        //   duration: 3000
+        // })
         console.log(res)
         if (res.errMsg =='cloud.callFunction:ok' 
            && res.result){
@@ -87,13 +105,15 @@ Page({
               userList: resp.respData.msgList
             })
             console.log(resp.respData.msgList)
+            wx.hideLoading();
           }
           
         }
       },
       fail: res => {
+        wx.hideLoading();
         wx.showToast({
-          title: '地址错误',
+          title: '小程序端查询异常',
           icon: 'none',
           duration: 2000
         })
@@ -153,5 +173,17 @@ Page({
         }
       }
     })
+  },
+  handleUnReadFuc(){
+    //未读
+    this.queryMsgCardList('0');
+  },
+  handleReadFuc(){
+    //聊天中的
+    this.queryMsgCardList('1');
+  },
+  handleQuitFuc(){
+    //结束
+    this.queryMsgCardList('2');
   }
 })

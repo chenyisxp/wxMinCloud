@@ -158,3 +158,9 @@ border-radius: 6rpx;
 color: #fff;
 padding: 2rpx 8rpx;
 }
+.noDataBox{
+  position: fixed;
+  left:50%;
+  top:50%;
+  transform: translate(-50%,-50%);
+}

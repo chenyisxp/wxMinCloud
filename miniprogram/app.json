@@ -1,13 +1,15 @@
 {
   "pages": [
+    "pages/routerCenter/index",
+    "pages/ptxCustCenter/testActivityMsg/index",
     "pages/index/index",
     "pages/history/index",
     "pages/testFuc/index",
     "pages/manageCenter/index",
     "pages/aiChat/index",
     "pages/webviewCenter/index",
-    "pages/testRequest/index",
     "pages/ptxCustCenter/index",
+    "pages/testMap/index",
     "pages/ptxCustCenter/msgList/index"
   ],
   "window": {

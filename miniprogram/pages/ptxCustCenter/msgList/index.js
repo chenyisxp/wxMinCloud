@@ -13,19 +13,30 @@ Page({
       // { messageType: 1, content: '欢迎3', sendTime: '' },
       // { messageType: 1, content: '欢迎4', sendTime: '' },
     ],
+    msgListFlag:false,
     scrollToView:'',
     libBoxShow:true,
     scrollTop:0,
-    inputBottom:0
+    inputBottom:0,
+    timer:{},
+    times:1000,//刷新频率
+    subMitBoxFlag:false,//关闭
+    chatType:'',
+    requestTime:1
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.setData({
+      chatType:app.globalData.chatType
+    })
     console.log(app.globalData.userCode, app.globalData.fromUserCode)
     if (app.globalData.userCode && app.globalData.fromUserCode){
-      this.queryMsgList();
+      this.timer =setInterval(()=>{
+        this.queryMsgList();
+      }, this.data.times)
     }
     
   },
@@ -56,14 +67,14 @@ Page({
    * 生命周期函数--监听页面隐藏
    */
   onHide: function () {
-
+    
   },
 
   /**
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-
+    clearInterval(this.timer)
   },
 
   /**
@@ -87,6 +98,15 @@ Page({
 
   },
   queryMsgList(){
+    if (this.data.requestTime==1){
+      this.setData({
+        requestTime:2
+      })
+      wx.showLoading({
+        title: '查询中,请稍后...',
+      })
+    }
+    
     //查询操作
     wx.cloud.callFunction({
       name: 'ptxRequestServer',
@@ -100,25 +120,42 @@ Page({
       },
       success: res => {
         let resp = JSON.parse(res.result);
-        console.log(resp)
+        console.log(this.data.chatType)
         if (resp.respCode == '0000'
             && resp.respData.respCode=='0000'){
           this.setData({
             msgList: resp.respData.msgList
           })
+          if (resp.respData.msgList.length>0){
+            this.setData({
+              msgListFlag:true
+            })
+          }else{
+            //如果是查看就要停止定时器
+            this.setData({
+              msgListFlag: false
+            })
+          }
+          if (this.data.chatType == '2') {
+            clearInterval(this.timer)
+          }
+          // console.log('aaaa:'+this.data.msgListFlag)
           this.setData({
             scrollTop: 1000 * resp.respData.msgList.length  // 这里我们的单对话区域最高1000，取了最大值，应该有方法取到精确的
           });
-          console.log(1000 * resp.respData.msgList.length)
+          // console.log(1000 * resp.respData.msgList.length)
+          wx.hideLoading();
         }
 
         
       },
       fail: res => {
-        // wx.showToast({
-        //   title: '获取失败',
-        //   icon: 'none'
-        // })
+        wx.hideLoading();
+        wx.showToast({
+          title: '聊天信息读取失败',
+          icon: 'none'
+        })
+        clearInterval(this.timer)
       }
     })
   },
@@ -148,9 +185,11 @@ Page({
         }
       },
       success: res => {
-       
-       
-
+       //刷新列表
+        // this.queryMsgList();
+        this.setData({
+          inputText:''
+        })
       },
       fail: res => {
         wx.showToast({
@@ -177,7 +216,25 @@ Page({
       inputBottom: 0
     })
   },
+  onPageScroll: function (e) {
+    console.log(e);//{scrollTop:99}
+  },
+  handleScroll(e){
+    console.log(e)
+    //滚动时 清除
+    clearInterval(this.timer);
+    
 
+  },
+  handleLower(e){
+    console.log('来了来了绿绿绿绿绿绿绿绿')
+    //滚到底部时，重新开启
+    if (app.globalData.userCode && app.globalData.fromUserCode) {
+      this.timer = setInterval(() => {
+        this.queryMsgList();
+      }, this.data.times)
+    }
+  }
   //用户输入内容--提交输入
   // submit: function () {
   //   var that = this;

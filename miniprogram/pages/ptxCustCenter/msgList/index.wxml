@@ -5,9 +5,9 @@
       </view> -->
 
       <view class="libBox" hidden="{{libBoxShow}}">
-       <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height: 900rpx;">
+       <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" bindscroll="handleScroll" bindscrolltolower="handleLower" style="height: 900rpx;">
        <view wx:for="{{msgList}}" class="scroll-view-item" wx:key="{{index}}" id="{{'key_'+index}}" >
-          <view class="timeShow" wx:if="{{item.sendTime}}">{{index}}{{item.sendTime}}</view>
+          <view class="timeShow" wx:if="{{item.sendTime}}">{{item.sendTime}}</view>
           <view  class="{{item.messageType==1?'l-left':'l-right'}}">
               <view class="l-inner">
                   {{item.content}}
@@ -15,7 +15,7 @@
           </view>
         </view>
         </scroll-view>
-        
+        <view class="noDataBox" hidden="{{msgListFlag}}"> 无相关数据</view>
           <!-- <view class="l-left">
               <view class="l-inner">
                 您好，请问你有可以帮到您
@@ -50,7 +50,7 @@
 
 <!-- start 输入框 -->
  
-<view class='inputBottom' style='bottom:{{inputBottom}}px'>
+<view class='inputBottom' style='bottom:{{inputBottom}}px' hidden="{{chatType == '2' }}">
     <input type='text' class='textInput' value='{{inputText}}' placeholder-class='textInputPlaceHolder' placeholder='输入你想要说的...' bindinput='bindTextAreaBlur' bindfocus="foucus" bindblur="blur" bindconfirm='handleCallFuc' adjust-position='{{false}}'></input>
     <text bindtap='handleCallFuc' class='submit'>发送</text>
 </view>

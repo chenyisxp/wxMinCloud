@@ -1,0 +1,9 @@
+<!--miniprogram/pages/routerCenter/index.wxml-->
+<view class="pageTitle">功能选择页</view>
+<button data-url="../index/index" catchtap="handleGo">前往 访客系统</button>
+<!-- <input class="input" name="password" placeholder="请输入密码" 
+    bindinput="userPasswordInput"/> -->
+<button size="default" data-url="../ptxCustCenter/index" catchtap="handleGoPtx">前往 ptx系统</button>
+<modal hidden="{{hiddenmodalput}}" title="请输入密码" confirm-text="确认" cancel-text="取消" bindcancel="cancel" bindconfirm="confirm">
+    <input type='text'placeholder="请输入..." bindinput="userPasswordInput" auto-focus/>
+</modal>

@@ -43,7 +43,7 @@ App({
         duration: 2500
       })
     })
-    
+
     //3、openai插件 初始化
     // plugin.init({
     //   appid: "cO92U3vXDGJoBc2NFJJGCix6zGqw03", //小程序示例账户，仅供学习和参考
@@ -55,7 +55,7 @@ App({
       appid: "P5Ot9PHJDechCYqDFAW1AiK6OtG3Ja",
       success: () => { },
       fail: error => { },
-      guideList: ["您好", "地址",'面试有那些环节','聊聊天'],
+      guideList: ["您好", "地址", '面试有那些环节', '聊聊天'],
       textToSpeech: true, //默认为ture打开状态
       welcome: "请问有什么需要帮助？",
       welcomeImage: 'http://inews.gtimg.com/newsapp_bt/0/10701537095/1000',
@@ -74,11 +74,40 @@ App({
     //   webviewurl: 'https://sitassess.greenlandfs.com/',
     //   userCode: 'user001'
     // }
+    this.overShare();
+  },
+  //重写分享方法
+  overShare: function () {
+    //监听路由切换
+    //间接实现全局设置分享内容
+    wx.onAppRoute(function (res) {
+      //获取加载的页面
+      let pages = getCurrentPages(),
+        //获取当前页面的对象
+        view = pages[pages.length - 1],
+        data;
+      if (view) {
+        data = view.data;
+        console.log('是否重写分享方法', data.isOverShare);
+        if (!data.isOverShare) {
+          data.isOverShare = true;
+          view.onShareAppMessage = function () {
+            //你的分享配置
+            return {
+              title: '来组团啊',
+              path: '/pages/index/index',
+              imageUrl: 'https://assess-sit.oss-cn-hangzhou.aliyuncs.com/share.png'
+            };
+          }
+        }
+      }
+    })
   },
   globalData: {
     url: 'https://sitassess.greenlandfs.com/',
     webviewurl: 'https://sitassess.greenlandfs.com/',
-    userCode:'user001',
-    fromUserCode:'user_202001111622122055'//当前会话的code
+    userCode: 'user001',
+    fromUserCode: 'user_202001111622122055',//当前会话的code
+    gChatType: ''//全局聊天状态
   }
 })

@@ -1,0 +1,5 @@
+<!--miniprogram/pages/ptxCustCenter/testActivityMsg/index.wxml-->
+<view style="text-align:center">测试动态消息</view>
+<button catchtap="handleCreate">创建id</button>
+<button catchtap="handleShare">更新分享配置</button>
+<button catchtap="handleUpdate">更新活动信息</button>

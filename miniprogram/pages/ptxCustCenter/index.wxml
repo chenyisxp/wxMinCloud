@@ -10,6 +10,11 @@
     <view class="culom m3">{{item.msgNum}}</view>
     <view class="culom m4">
       <view class="cBtn" data-fromusercode="{{item.userCode}}" 
-      data-fromuserip="{{item.userIp}}" catchtap="handleConnect">接入</view>
+      data-fromuserip="{{item.userIp}}" catchtap="handleConnect">{{btnShowName}}</view>
     </view>
+</view>
+<view class="btnBox">
+  <view class="btn n_1 {{chatType=='0'?'active':'' }}" catchtap="handleUnReadFuc" >待接入</view>
+  <view class="btn n_2 {{chatType=='1'?'active':'' }}" catchtap="handleReadFuc">进行中</view>
+  <view class="btn n_3 {{chatType=='2'?'active':'' }}" catchtap="handleQuitFuc">已结束</view>
 </view>

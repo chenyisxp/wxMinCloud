@@ -1,0 +1,22 @@
+/* miniprogram/pages/routerCenter/index.wxss */
+page{
+  margin-top: 10%;
+}
+.pageTitle{
+  text-align: center;
+  color: #000;
+  font-size: 48rpx;
+  margin-bottom: 15%;
+}
+button{
+  width: 80%;
+  border: 1px solid #5576dc;
+  background: #fff;
+  color: #5576dc;
+  border-radius: 50rpx;
+  margin-bottom: 30rpx;
+}
+.input{
+  width: 200rpx;
+  margin: 0 auto;
+}
