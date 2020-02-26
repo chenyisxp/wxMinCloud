@@ -1,2 +1,2 @@
 
-   <web-view src="http://101.132.238.199:8089/"></web-view>   
+   <web-view src="{{wurl}}"></web-view>   
