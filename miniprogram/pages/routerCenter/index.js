@@ -1,4 +1,5 @@
 // miniprogram/pages/routerCenter/index.js
+const app = getApp()
 Page({
 
   /**
@@ -98,7 +99,9 @@ Page({
     this.setData({
       hiddenmodalput: true
     })
-    if (this.data.password!='@2008'){
+    if (this.data.password != 'user_001' 
+    && this.data.password != 'user_002' 
+    && this.data.password != 'user_003'){
       wx.showToast({
         title: '密码不正确',
         icon: 'none',
@@ -106,6 +109,9 @@ Page({
       })
       return;
     }
+    
+    app.globalData.userCode=this.data.password
+    
     wx.navigateTo({
       url: '../ptxCustCenter/index',
     })

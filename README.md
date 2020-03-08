@@ -28,5 +28,9 @@
     traceUser: true,
   })
 2、project.config.json 中 appId 请填写自己的
-
+3、小程序 里使用的接口号有：
+ac010005
+ac010004
+ac010002
+ac010001
 

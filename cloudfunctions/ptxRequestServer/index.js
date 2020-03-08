@@ -41,7 +41,7 @@ exports.main = async (event, context) => {
   console.log('context', context)
   //let getResponse = await got('httpbin.org/get') //get请求 用httpbin.org这个网址做测试 
   //return getResponse.body
-  let postResponse = await got('http://101.132.238.199:3000/front/mainactivity', {
+  let postResponse = await got('http://101.132.238.199:3000/minfront/mainactivity', {
     method: 'POST', //post请求
     headers: {
       'Content-Type': 'application/json'

@@ -107,7 +107,7 @@ App({
     url: 'http://101.132.238.199:8089/#/',
     webviewurl: 'https://sitassess.greenlandfs.com/',
     userCode: 'user001',
-    fromUserCode: 'user_202001111622122055',//当前会话的code
+    fromUserCode: '',//当前会话的code
     gChatType: ''//全局聊天状态
   }
 })

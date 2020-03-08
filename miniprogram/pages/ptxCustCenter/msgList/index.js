@@ -180,7 +180,8 @@ Page({
             messageType:'1',//回复
             content: this.data.inputText,
             fromUserCode: app.globalData.fromUserCode,
-            receiveUserCode: app.globalData.userCode
+            receiveUserCode: app.globalData.userCode,
+            isRead:1
           }
         }
       },

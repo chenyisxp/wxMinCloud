@@ -11,7 +11,8 @@ Page({
     userList:[
     ],
     btnShowName:'接入',
-    chatType:'0'
+    chatType:'0',
+    title:'消息数'
   },
 
   /**
@@ -127,9 +128,13 @@ Page({
       replace(/\)/g, '%29').replace(/\*/g, '%2A').replace(/%20/g, '+');
   },
   handleConnect(event){
+    let self =this;
     console.log(event)
+    //参数名 小写，大写也会被转
     let fromusercode = event.target.dataset.fromusercode;
     let fromuserip = event.target.dataset.fromuserip;
+    let operateType = event.target.dataset.operatetype;
+    console.log(operateType)
     if (!fromusercode || !fromuserip){
       console.log(fromusercode, fromuserip)
       wx.showToast({
@@ -141,7 +146,7 @@ Page({
     app.globalData.fromUserCode = fromusercode;
     wx.showModal({
       title: '提示',
-      content: '确定要接入吗？' + fromusercode + fromuserip,
+      content: '确定要' + (operateType =='connect'?'接入':'断开')+'吗？' + fromusercode + fromuserip,
       success: function (sm) {
         if (sm.confirm) {
           // 用户点击了确定 可以调用删除方法了
@@ -149,15 +154,21 @@ Page({
           wx.cloud.callFunction({
             name: 'ptxRequestServer',
             data: { jsonparams: { "txCode": "ac010004", "deviceId": "", "sessionId": "", "custId": "", "timestamp": "202001091392", "reqParams": {
-              chatType:1,
+              chatType: operateType == 'connect' ? 1 : 2,
               ip: fromuserip,
               fromUserCode: fromusercode,
-              receiveUserCode: app.globalData.userCode
+              receiveUserCode: app.globalData.userCode,
+              isRead:1
             } } },
             success: res => {
-              wx.navigateTo({
-                url: 'msgList/index'
-              })
+              if (operateType=='connect'){
+                wx.navigateTo({
+                  url: 'msgList/index'
+                })
+              }else{
+                self.queryMsgCardList('1');
+              }
+             
             },
             fail: res => {
               wx.showToast({

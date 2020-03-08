@@ -1,16 +1,22 @@
 <view class="headBox">
     <view class="culom m1">序号</view>
-    <view class="culom m2">ip</view>
-    <view class="culom m3">消息数</view>
+    <view class="culom m2">接入时间</view>
+    <view class="culom m3" wx:if="{{ chatType!='2' }}">未读</view>
+    <view class="culom m3" wx:if="{{ chatType=='2' }}">总数</view>
     <view class="culom m4">操作</view>
 </view>
-<view wx:for="{{userList}}">
+<view class="line-box" wx:for="{{userList}}">
    <view class="culom m1">{{index+1}}</view>
-    <view class="culom m2">{{item.userIp}}</view>
+    <view class="culom m2">
+      <!-- <view>{{item.userIp}}</view> -->
+      <div>{{item.loginTime}}</div>
+    </view>
     <view class="culom m3">{{item.msgNum}}</view>
     <view class="culom m4">
       <view class="cBtn" data-fromusercode="{{item.userCode}}" 
-      data-fromuserip="{{item.userIp}}" catchtap="handleConnect">{{btnShowName}}</view>
+      data-fromuserip="{{item.userIp}}" data-operatetype="connect"  catchtap="handleConnect">{{btnShowName}}</view>
+      <view class="cBtn" wx:if="{{ chatType=='1' }}" data-fromusercode="{{item.userCode}}" 
+      data-fromuserip="{{item.userIp}}" data-operatetype="disconnect" catchtap="handleConnect">断开</view>
     </view>
 </view>
 <view class="btnBox">
